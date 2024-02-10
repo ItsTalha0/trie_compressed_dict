@@ -1,0 +1,15 @@
+second.c is implemented using even sized pointers i.e even if the pointer is 20 bit we consider the whole 24 bits i.e 3 bytes as the pointer.
+
+trie1.c is implemented using odd sized pointer i.e if the pointer is 20 it is used as 20 bits and the next pointer will start from 21st bit.
+
+words contain the list of words to be inserted and checked.
+second.c is bit incomplete. but will run.
+
+to compile run make.
+	$make
+to run second.c
+	$./second words tt        
+	here tt is the file where you will get the various statistics about node types and count of them
+to run trie1.c //by manpreet
+	$./trie1 words $(wc -l wrods) < words
+
