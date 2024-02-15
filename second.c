@@ -142,7 +142,6 @@ int flat_gen(node *root)
 	int ret_address = global_index;
 	int local_index = global_index;
 	int n_type = nodeType(root);
-	//printf("%d\n",n_type);
 	union valset{ int i;char lcr[3];}v1;
 	if( n_type == 0 )	// 1+26*4=105b
 	{
@@ -205,18 +204,12 @@ int flat_gen(node *root)
 				v1.i = root->meanPos[i];
 			}
 			memcpy(pp+local_index,v1.lcr,3);
-			printf("%d vi.i\n",v1.i);
 			local_index+=3;
 		}
 
 	}
 	return ret_address;
 }
-
-/*
-   searching ??
- */
-
 
 int flt_srch(char * word)
 {
@@ -226,10 +219,6 @@ int flt_srch(char * word)
 	union valset{ int i;char lcr[3];}v1;
 	while( flg==1 && *(word+1)!='\0')
 	{
-		//putchar(*word);
-		//putchar('\n');
-		//printf("%d li\n",li);
-		//printf("%d type\n",pp[li]);
 		if( pp[li] != T2  && *((int*)(pp + (li+1 + 4*(*word - 'a')))) != 0 )
 		{
 			li = *((int*)(pp + (li+1 + 4*(*word - 'a'))));
@@ -240,7 +229,6 @@ int flt_srch(char * word)
 			flg=0;
 		}
 	}
-	printf("li %d t %d\n",li,pp[li]);
 	if(flg == 1 && pp[li] != T1)
 	{	
 		int jump=0;
@@ -250,9 +238,7 @@ int flt_srch(char * word)
 		}
 		v1.i = 0;
 		memcpy(v1.lcr,( pp + li +1 + jump + 3*( *word -'a' )),3);
-		printf("%d union val\n",v1.i);
 		retval = (*((int*)(pp+( 1 +li+ jump + 3*( *word - 'a' )))) << 8 )>>8;
-		printf("%d typecast val\n",(*((int*)(pp+( 1 +li+ jump + 3*( *word - 'a' )))) << 8 )>>8);
 	}
 	return retval;
 }
@@ -346,37 +332,9 @@ int main(int argc,char * argv[])
 		fclose(fout);
 		fclose(fin);
 		printf("generating flat\n");
-		node * ap = node_gen();
-		printf("generating flat\n");
-		ap->nnode[1] = NULL;
-		//ap->meaning = ap->meaning | 1<<3;
-		printf("generating flat\n");
 		int ret = flat_gen(root);
 		printf("%d,%d\n",ret,global_index);
-
-		if( pp[0] == T3 )
-		{
-			printf("hurray\n");
-		}
-		for(int i=26656592;i<(26*4 + 26656592);i=i+4)
-		{
-			//printf("%d\n",*((int *)(pp+i)));
-		}
-		for( int i=26656592;i<( 26*4 + 26656592);i=i+3)
-		{
-			//printf("%d %d  meaning 1\n",(*((int *)(pp+i))<<8)>>8,i);
-		}
-		//for(int i=175;i<186;i++)
-		//printf("%x %d\n",pp[i],i);
-		while(1)
-		{
-		scanf("%s",arr);
-		printf("%d fltsrch \n",flt_srch(arr));
-		printf("%d normal\n",srch(arr,root));
-}
-
-
-
+		/* further work awaits */
 	}
 }
 
