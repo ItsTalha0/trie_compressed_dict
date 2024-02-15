@@ -249,10 +249,10 @@ int flt_srch(char * word)
 			jump= 26*4;
 		}
 		v1.i = 0;
-		memcpy(v1.lcr,( pp + 1 + jump + 3*( *word -'a' )),3);
+		memcpy(v1.lcr,( pp + li +1 + jump + 3*( *word -'a' )),3);
 		printf("%d union val\n",v1.i);
-		retval = (*((int*)(pp+( 1 + jump + 3*( *word - 'a' )))) << 8 )>>8;
-		printf("%d typecast val\n",(*((int*)(pp+( 1 + jump + 3*( *word - 'a' )))) << 8 )>>8);
+		retval = (*((int*)(pp+( 1 +li+ jump + 3*( *word - 'a' )))) << 8 )>>8;
+		printf("%d typecast val\n",(*((int*)(pp+( 1 +li+ jump + 3*( *word - 'a' )))) << 8 )>>8);
 	}
 	return retval;
 }
