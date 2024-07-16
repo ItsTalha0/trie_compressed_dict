@@ -276,7 +276,7 @@ int main(int argc,char * argv[])
 		rewind(fin);
 		i=0;
 		int flag = 1;
-
+		
 		while(((arr[i]=fgetc(fin)) != EOF) && flag!=-1)
 		{
 			if( arr[i] == '\n' )
